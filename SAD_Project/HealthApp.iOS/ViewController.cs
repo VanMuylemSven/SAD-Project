@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AppCenter.Analytics;
+using System;
 
 using UIKit;
 
@@ -14,6 +15,8 @@ namespace HealthApp.iOS
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
+
+            Analytics.TrackEvent("Testing - Start project");
         }
 
         public override void DidReceiveMemoryWarning()

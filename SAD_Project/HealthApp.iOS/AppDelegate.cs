@@ -1,5 +1,8 @@
 ﻿using Foundation;
 using UIKit;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace HealthApp.iOS
 {
@@ -21,6 +24,9 @@ namespace HealthApp.iOS
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+
+            //Microsoft AppCenter
+            AppCenter.Start("60486648-6c24-4a21-9899-1db4a8423bb6", typeof(Analytics), typeof(Crashes));
 
             return true;
         }
