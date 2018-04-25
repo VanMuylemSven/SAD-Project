@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace HealthApp.iOS
+namespace Project.iOS
 {
     public class Application
     {
