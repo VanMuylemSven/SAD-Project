@@ -12,7 +12,7 @@ namespace Project.iOS.Models
     public class MyMapDelegate : MKMapViewDelegate
     {
         string pId = "PinAnnotation";
-        string mId = "MonkeyAnnotation";
+        //string mId = "MonkeyAnnotation";
 
         public override MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
         {
@@ -44,7 +44,7 @@ namespace Project.iOS.Models
             if (anView == null)
                 anView = new MKPinAnnotationView(annotation, pId);
 
-            ((MKPinAnnotationView)anView).PinColor = MKPinAnnotationColor.Red;
+            ((MKPinAnnotationView)anView).PinTintColor = UIColor.Green;
             anView.CanShowCallout = true;
 
             return anView;

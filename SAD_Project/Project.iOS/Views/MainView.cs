@@ -37,8 +37,8 @@ namespace Project.iOS.Views
             MainMap.ShowsUserLocation = true;
 
             // set map center and region
-            const double lat = 42.374260;
-            const double lon = -71.120824;
+            const double lat = 50.8247952; //Stationsplein kortrijk
+            const double lon = 3.2643516000000545;
             var mapCenter = new CLLocationCoordinate2D(lat, lon);
             var mapRegion = MKCoordinateRegion.FromDistance(mapCenter/*MainMap.UserLocation.Coordinate*/, 2000, 2000);
             MainMap.CenterCoordinate = mapCenter/*MainMap.UserLocation.Coordinate*/;
@@ -59,7 +59,7 @@ namespace Project.iOS.Views
 
             ////////////
             //Local Search UIBar
-            var searchResultsController = new SearchResultsViewController(MainMap);
+            var searchResultsController = new SearchResultsView(MainMap);
 
             var searchUpdater = new SearchResultsUpdater();
             searchUpdater.UpdateSearchResults += searchResultsController.Search;
@@ -77,13 +77,23 @@ namespace Project.iOS.Views
             searchController.HidesNavigationBarDuringPresentation = false;
             NavigationItem.TitleView = searchController.SearchBar;
             DefinesPresentationContext = true;
+
+            //Compass
+            var compass = MKCompassButton.FromMapView(MainMap);
+            compass.CompassVisibility = MKFeatureVisibility.Visible;
+            NavigationItem.RightBarButtonItem = new UIBarButtonItem(compass);
+            MainMap.ShowsCompass = false; // so we don't have two compasses!
+            // User tracking button
+            //Because of using it on a simulator, you can't actually SEE it, but it does work. probably.
+            var button = MKUserTrackingButton.FromMapView(MainMap);
+            button.Layer.BackgroundColor = UIColor.FromRGBA(255, 255, 255, 80).CGColor;
+            button.Layer.BorderColor = UIColor.White.CGColor;
+            button.Layer.BorderWidth = 1;
+            button.Layer.CornerRadius = 5;
+            button.TranslatesAutoresizingMaskIntoConstraints = false;
+            View.AddSubview(button); // constraints omitted for simplicity
         }
 
-
-
-
-
-        /////////////////////////////////
         
     }
 }

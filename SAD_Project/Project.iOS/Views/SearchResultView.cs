@@ -5,18 +5,18 @@ using MapKit;
 using System.Collections.Generic;
 using CoreLocation;
 using System.Linq;
-using MvvmCross.iOS.Views;
 
-namespace Project.iOS
+
+namespace Project.iOS.Views
 {
-    public class SearchResultsViewController : MvxTableViewController
+    public class SearchResultsView : UITableViewController
     {
         static readonly string mapItemCellId = "mapItemCellId";
         MKMapView map;
 
         public List<MKMapItem> MapItems { get; set; }
 
-        public SearchResultsViewController(MKMapView map)
+        public SearchResultsView(MKMapView map)
         {
             this.map = map;
 
@@ -51,6 +51,8 @@ namespace Project.iOS
             });
 
             map.SetCenterCoordinate(coord, true);
+
+            //////////////////////////////////
 
             DismissViewController(false, null);
         }

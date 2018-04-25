@@ -65,7 +65,7 @@
     <None Include="Info.plist" />
     <Compile Include="Models\MyMapDelegate.cs" />
     <Compile Include="Models\SearchResultsUpdater.cs" />
-    <Compile Include="SearchResultViewController.cs" />
+    <Compile Include="Views\SearchResultView.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MainView.designer.cs">
@@ -108,7 +108,9 @@
   <ItemGroup>
     <Content Include="Entitlements.plist" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TableViewSources\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project.Core\Project.Core.csproj">
       <Project>{82b9499a-22c6-404a-887f-be67b56032b3}</Project>
