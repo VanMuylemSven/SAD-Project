@@ -41,11 +41,14 @@
     <Compile Include="Models\HistoryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\ISearchHistoryRepository.cs" />
+    <Compile Include="Repositories\SearchHistoryRepository.cs" />
     <Compile Include="Services\IMainService.cs" />
+    <Compile Include="Services\ISearchHistoryService.cs" />
     <Compile Include="Services\MainService.cs" />
-    <Compile Include="Services\RecentHistoryService.cs" />
+    <Compile Include="Services\SearchHistoryService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\RecentHistoryViewModel.cs" />
+    <Compile Include="ViewModels\SearchHistoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">

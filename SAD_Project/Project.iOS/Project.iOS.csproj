@@ -65,6 +65,10 @@
     <None Include="Info.plist" />
     <Compile Include="Models\MyMapDelegate.cs" />
     <Compile Include="Models\SearchResultsUpdater.cs" />
+    <Compile Include="Views\SearchHistoryView.cs" />
+    <Compile Include="Views\SearchHistoryView.designer.cs">
+      <DependentUpon>SearchHistoryView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SearchResultView.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\MainView.cs" />
