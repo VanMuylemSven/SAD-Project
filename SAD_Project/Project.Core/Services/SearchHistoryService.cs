@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Project.Core.Services
 {
-    class SearchHistoryService : ISearchHistoryService
+    public class SearchHistoryService : ISearchHistoryService
     {
+
         private static List<HistoryItem> historyItems = new List<HistoryItem>();
         private readonly ISearchHistoryRepository _searchHistoryRepository;
 
@@ -34,5 +35,7 @@ namespace Project.Core.Services
         {
             await _searchHistoryRepository.DeleteHistoryItem(id);
         }
+
+
     }
 }

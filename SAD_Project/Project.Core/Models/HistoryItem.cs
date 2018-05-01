@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Project.Core.Models
 {
-    class HistoryItem
+    public class HistoryItem
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public DateTime DateOfSearch { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public string DateOfSearch { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
 
     }
 }

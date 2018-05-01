@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.Navigation;
+using MvvmCross.Core.ViewModels;
 using Project.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,16 @@ namespace Project.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        private IMainService _mainService;
-        public MainViewModel(IMainService mainService)
+        //ctor
+        private readonly IMainService _mainService;
+        private readonly IMvxNavigationService _navigationService;
+        public MainViewModel(IMainService mainService, IMvxNavigationService navigationService)
         {
             _mainService = mainService;
-
+            _navigationService = navigationService;
             
         }
-        
+
         //Props
 
 
@@ -27,16 +30,23 @@ namespace Project.Core.ViewModels
 
         /*Commands: speciale properties in een ViewModel waaraan we een actie kunnen koppelen. 
         De command zelf binden we dan aan een knop. Wanneer iemand op de knop drukt dan zal het command uitgevoerd worden.*/
-        /*public ICommand BmiCalculatorScreenCommand
+        public IMvxCommand SearchHistoryCommand
         {
             get
             {
-                return new MvxCommand(() => ShowViewModel<BmiCalculatorViewModel>());
+                return new MvxCommand(ShowSearchHistoryScreen);
             }
-        }*/
-  
+        }
+        public void ShowSearchHistoryScreen()
+        {
+            _navigationService.Navigate<SearchHistoryViewModel>(); 
+
+            //ShowViewModel<TestViewModel>();
+            //_navigationService.Navigate<TestViewModel>();
+        }
 
 
-        
+
+
     }
 }

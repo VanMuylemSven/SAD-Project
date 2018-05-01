@@ -1,5 +1,4 @@
-﻿using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
 using Project.Core.Models;
 using Project.Core.Services;
 using System;
@@ -10,32 +9,35 @@ using System.Threading.Tasks;
 
 namespace Project.Core.ViewModels
 {
-    public class SearchHistoryViewModel: MvxViewModel
+    public class SearchHistoryViewModel : MvxViewModel
     {
         private readonly ISearchHistoryService _searchHistoryService;
 
         private List<HistoryItem> _historyItems;
+
         public List<HistoryItem> HistoryItems
         {
             get { return _historyItems; }
-            set
-            {
-                _historyItems = value;
+            set { _historyItems = value;
                 RaisePropertyChanged(() => HistoryItems);
             }
         }
 
-        public SearchHistoryViewModel(ISearchHistoryService searchHistoryService, IMvxNavigationService navigationService)
+        //ctor
+        public SearchHistoryViewModel(ISearchHistoryService searchHistoryService)
         {
             _searchHistoryService = searchHistoryService;
-            //_navigationService = navigationService;
 
-            //Fill up the historyItem list
-            FillHistoryItems();
+            FillHistory();
+
+
         }
-        private async void FillHistoryItems()
+
+        private async void FillHistory()
         {
             HistoryItems = await _searchHistoryService.GetHistoryItems();
+
         }
+
     }
 }

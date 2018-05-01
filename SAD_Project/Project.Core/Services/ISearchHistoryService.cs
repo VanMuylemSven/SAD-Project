@@ -4,7 +4,7 @@ using Project.Core.Models;
 
 namespace Project.Core.Services
 {
-    interface ISearchHistoryService
+    public interface ISearchHistoryService
     {
         Task AddHistoryItem(HistoryItem item);
         Task DeleteHistoryItem(string id);

@@ -4,7 +4,7 @@ using Project.Core.Models;
 
 namespace Project.Core.Repositories
 {
-    interface ISearchHistoryRepository
+    public interface ISearchHistoryRepository
     {
         Task DeleteHistoryItem(string id);
         Task<List<HistoryItem>> GetHistory();

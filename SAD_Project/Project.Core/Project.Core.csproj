@@ -45,10 +45,13 @@
     <Compile Include="Repositories\SearchHistoryRepository.cs" />
     <Compile Include="Services\IMainService.cs" />
     <Compile Include="Services\ISearchHistoryService.cs" />
+    <Compile Include="Services\ITestService.cs" />
     <Compile Include="Services\MainService.cs" />
     <Compile Include="Services\SearchHistoryService.cs" />
+    <Compile Include="Services\TestService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SearchHistoryViewModel.cs" />
+    <Compile Include="ViewModels\TestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">

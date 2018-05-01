@@ -7,9 +7,19 @@ using System.Threading.Tasks;
 
 namespace Project.Core.Repositories
 {
-    class SearchHistoryRepository : BaseRepository, ISearchHistoryRepository
+    public class SearchHistoryRepository : BaseRepository, ISearchHistoryRepository
     {
         private const string _BASEURL = "https://sad-history.azurewebsites.net/api/history/";
+
+        public Task<List<HistoryItem>> GetHistory()
+        {
+            /*https://sad-history.azurewebsites.net/api/history/GetAll*/
+            string url = "https://sad-history.azurewebsites.net/api/history/GetAll";
+            Task<List<HistoryItem>> list = GetAsync<List<HistoryItem>>(url);
+            return GetAsync<List<HistoryItem>>(url);
+        }
+
+
         /*https://sad-history.azurewebsites.net/api/history/add/
         { 
             "Name": "station kortrijk",
@@ -17,16 +27,6 @@ namespace Project.Core.Repositories
             "Latitude": 50.8247952,
             "Longitude": 3.26435160000005
         }*/
-
-        /*https://sad-history.azurewebsites.net/api/history/GetAll*/
-
-
-        public Task<List<HistoryItem>> GetHistory()
-        {
-            string url = String.Format("{0}{1}", _BASEURL, "getall");
-            return GetAsync<List<HistoryItem>>(url);
-        }
-
         public Task<HistoryItem> PosthistoryItem(HistoryItem historyItem)
         {
             string url = String.Format("{0}{1}", _BASEURL, "add/");

@@ -25,7 +25,15 @@ namespace Project.iOS
             var setup = new Setup(this, window);
             setup.Initialize();
             var startup = Mvx.Resolve<IMvxAppStart>();
-            startup.Start();
+            try
+            {
+                startup.Start();
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            
 
             window.MakeKeyAndVisible();
 

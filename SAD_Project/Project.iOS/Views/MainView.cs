@@ -1,7 +1,9 @@
 ﻿using CoreLocation;
 using Foundation;
 using MapKit;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
+using Project.Core.ViewModels;
 using Project.iOS.Models;
 using System;
 using UIKit;
@@ -24,9 +26,31 @@ namespace Project.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
 
+            //Bottom Tab bar 
+            UIBarButtonItem recentHistoryBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Bookmarks);
+            UIBarButtonItem[] toolbarItems = new UIBarButtonItem[] {
+                recentHistoryBarButton//,
+                //...
+            };
+
+            this.SetToolbarItems(toolbarItems, false);
+            this.NavigationController.ToolbarHidden = false;
+
+
+            /////////////
+            // BINDING //
+            /////////////
+            MvxFluentBindingDescriptionSet<MainView, MainViewModel> set = new MvxFluentBindingDescriptionSet<MainView, MainViewModel>(this);
+            set.Bind(recentHistoryBarButton).To(vm => vm.SearchHistoryCommand); //show Search History window
+            //set.Bind(BtnTest).To(vm => vm.SearchHistoryCommand);
+
+            set.Apply();
+
+
+            ////////////
             // MapKit //
+            ////////////
             locationManager.RequestWhenInUseAuthorization(); //Request authorisation to use location when app is in foreground. (Error in versions below 8.0)
             //Type
             MainMap.MapType = MapKit.MKMapType.Standard;
@@ -92,6 +116,8 @@ namespace Project.iOS.Views
             button.Layer.CornerRadius = 5;
             button.TranslatesAutoresizingMaskIntoConstraints = false;
             View.AddSubview(button); // constraints omitted for simplicity
+
+
         }
 
         
