@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using Project.Core.Models;
 using Project.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,15 @@ namespace Project.Core.ViewModels
         //ctor
         private readonly IMainService _mainService;
         private readonly IMvxNavigationService _navigationService;
-        public MainViewModel(IMainService mainService, IMvxNavigationService navigationService)
+        private readonly ISearchHistoryService _searchHistoryService;
+
+        public HistoryItem selectedHistoryItem { get; set; }
+
+        public MainViewModel(IMainService mainService, ISearchHistoryService searchHistoryService, IMvxNavigationService navigationService)
         {
             _mainService = mainService;
             _navigationService = navigationService;
-            
+            _searchHistoryService = searchHistoryService;
         }
 
         //Props

@@ -29,7 +29,7 @@ namespace Project.Core.Repositories
         }*/
         public Task<HistoryItem> PosthistoryItem(HistoryItem historyItem)
         {
-            string url = String.Format("{0}{1}", _BASEURL, "add/");
+            string url = "https://sad-history.azurewebsites.net/api/history/add/";
             return PostAsync<HistoryItem>(url, historyItem);
         }
 

@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.Navigation;
+using MvvmCross.Core.ViewModels;
 using Project.Core.Models;
 using Project.Core.Services;
 using System;
@@ -12,6 +13,7 @@ namespace Project.Core.ViewModels
     public class SearchHistoryViewModel : MvxViewModel
     {
         private readonly ISearchHistoryService _searchHistoryService;
+        private readonly IMvxNavigationService _navigationService;
 
         private List<HistoryItem> _historyItems;
 
@@ -24,12 +26,18 @@ namespace Project.Core.ViewModels
         }
 
         //ctor
-        public SearchHistoryViewModel(ISearchHistoryService searchHistoryService)
+        public SearchHistoryViewModel(ISearchHistoryService searchHistoryService, IMvxNavigationService navigationService)
         {
             _searchHistoryService = searchHistoryService;
+            _navigationService = navigationService;
 
             FillHistory();
 
+            /* Test post history */
+            string date = DateTime.Now.ToString();
+            HistoryItem testItem = new HistoryItem() { Id="4", Name = "Hogeschool Kortrijk", DateOfSearch = "1999-01-01 00:00:00",
+                Latitude = "55.5", Longitude = "42.2" } ;
+            PostHistory(testItem);
 
         }
 
@@ -39,5 +47,10 @@ namespace Project.Core.ViewModels
 
         }
 
+        private async void PostHistory(HistoryItem item)
+        {
+            await _searchHistoryService.AddHistoryItem(item);
+            //await _navigationService.Navigate...
+        }
     }
 }

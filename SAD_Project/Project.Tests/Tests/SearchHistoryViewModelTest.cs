@@ -45,7 +45,7 @@ namespace Project.Tests.Tests
             var mockHistoryService = new Mock<ISearchHistoryService>();
             mockHistoryService.Setup(ws => ws.GetHistoryItems()).Returns(Task.FromResult(historyList));
             /*Als laatste moeten we de fake service doorgeven aan het viewmodel.*/
-            var vm = new SearchHistoryViewModel(mockHistoryService.Object);
+            var vm = new SearchHistoryViewModel(mockHistoryService.Object, null);
 
             //ACT
             var allHistoryItems = vm.HistoryItems;

@@ -3,6 +3,7 @@ using Foundation;
 using MapKit;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
+using Project.Core.Models;
 using Project.Core.ViewModels;
 using Project.iOS.Models;
 using System;
@@ -121,5 +122,9 @@ namespace Project.iOS.Views
         }
 
         
+        public void AddMapAnnotation(MKMapView map, HistoryItem historyItem)
+        {
+
+        }
     }
 }
