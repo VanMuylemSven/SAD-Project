@@ -21,8 +21,8 @@ namespace Project.iOS.Views
             base.LayoutSubviews();
 
             MvxFluentBindingDescriptionSet<SearchHistoryTableCell, HistoryItem> set = new MvxFluentBindingDescriptionSet<SearchHistoryTableCell, HistoryItem>(this);
-            set.Bind(TextLabel).To(res => res.Latitude);
-            set.Bind(DetailTextLabel).To(res => res.DateOfSearch);
+            set.Bind(TextLabel).To(res => res.Name);
+            set.Bind(DetailTextLabel).To(res => res.LatLong);
             set.Apply();
 
         }

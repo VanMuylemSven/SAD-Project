@@ -7,6 +7,7 @@ using Project.Core.Models;
 using Project.Core.ViewModels;
 using Project.iOS.Models;
 using System;
+using System.Diagnostics;
 using UIKit;
 
 namespace Project.iOS.Views
@@ -18,6 +19,7 @@ namespace Project.iOS.Views
         MyMapDelegate mapDelegate;
         UISearchController searchController;
         CLLocationManager locationManager = new CLLocationManager();
+        HistoryItem selectedHistoryItem;
 
 
         public MainView(IntPtr handle) : base(handle)
@@ -41,17 +43,24 @@ namespace Project.iOS.Views
 
             /////////////
             // BINDING //
-            /////////////
             MvxFluentBindingDescriptionSet<MainView, MainViewModel> set = new MvxFluentBindingDescriptionSet<MainView, MainViewModel>(this);
             set.Bind(recentHistoryBarButton).To(vm => vm.SearchHistoryCommand); //show Search History window
+
             //set.Bind(BtnTest).To(vm => vm.SearchHistoryCommand);
+
+            //Bind map to the viewmodel prop, so it can access it.
+            //set.Bind(MainMap).To(vm => vm.mainMap); //CRASH
+            set.Bind(selectedHistoryItem).For(item => item.Name).To(vm => vm.SelectedHistoryItem.Name);
+            //set.Bind(this).For(s => s.selectedHistoryItem).To(vm => vm.SelectedHistoryItem);
+            //set.Bind(AddMapAnnotation).To(vm => vm.AddAnnoCommand); //////////////////////////////////////////////////
+
+            
 
             set.Apply();
 
 
             ////////////
             // MapKit //
-            ////////////
             locationManager.RequestWhenInUseAuthorization(); //Request authorisation to use location when app is in foreground. (Error in versions below 8.0)
             //Type
             MainMap.MapType = MapKit.MKMapType.Standard;
@@ -66,17 +75,31 @@ namespace Project.iOS.Views
             const double lon = 3.2643516000000545;
             var mapCenter = new CLLocationCoordinate2D(lat, lon);
             var mapRegion = MKCoordinateRegion.FromDistance(mapCenter/*MainMap.UserLocation.Coordinate*/, 2000, 2000);
-            MainMap.CenterCoordinate = mapCenter/*MainMap.UserLocation.Coordinate*/;
+            //MainMap.CenterCoordinate = mapCenter/*MainMap.UserLocation.Coordinate*/;
             MainMap.Region = mapRegion;
 
-            //Adding an annotation
-            MainMap.AddAnnotations(new MKPointAnnotation()
+            //If no historyitem is selected
+            var mainVM = this.ViewModel as MainViewModel; //To get the item from the ViewModel, Get it via the VM itself, and cast it as that type of VM.
+            if (mainVM != null) 
             {
-                Title = "New Annotation",
-                Coordinate = MainMap.UserLocation.Coordinate,
-                Subtitle = "subtitle"
+                selectedHistoryItem = mainVM.SelectedHistoryItem;
+            }
+            if (selectedHistoryItem != null)
+            {
+                CLLocationCoordinate2D coordinate2D = new CLLocationCoordinate2D(double.Parse(selectedHistoryItem.Latitude), double.Parse(selectedHistoryItem.Longitude));
+                //Adding an annotation
+                MainMap.AddAnnotations(new MKPointAnnotation()
+                {
+                    Title = selectedHistoryItem.Name,
+                    Coordinate = coordinate2D,
+                    Subtitle = selectedHistoryItem.LatLong
+                   
 
-            });
+                });
+                MainMap.SetCenterCoordinate(coordinate2D, true);
+                MainMap.Region = MKCoordinateRegion.FromDistance(coordinate2D, 10000, 10000);
+            }
+            
 
             // set the map delegate
             mapDelegate = new MyMapDelegate();
@@ -116,15 +139,10 @@ namespace Project.iOS.Views
             button.Layer.BorderWidth = 1;
             button.Layer.CornerRadius = 5;
             button.TranslatesAutoresizingMaskIntoConstraints = false;
-            View.AddSubview(button); // constraints omitted for simplicity
+            View.AddSubview(button);
 
-
-        }
-
-        
-        public void AddMapAnnotation(MKMapView map, HistoryItem historyItem)
-        {
 
         }
     }
 }
+ 

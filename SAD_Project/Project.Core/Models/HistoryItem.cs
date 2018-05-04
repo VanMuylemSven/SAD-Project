@@ -11,8 +11,27 @@ namespace Project.Core.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public string DateOfSearch { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
+
+        private string _latitude;
+        public string Latitude
+        {
+            get { return _latitude; }
+            set {
+                _latitude = value;
+                LatLong = "Latitude: " + Latitude + " - Longitude: " + Longitude;
+            }
+        }
+        private string _longitude;
+        public string Longitude
+        {
+            get { return _longitude; }
+            set {
+                _longitude = value;
+                LatLong = "Latitude: " + Latitude + " - Longitude: " + Longitude;
+            }
+        }
+        
+        public string LatLong {get; set; }
 
     }
 }

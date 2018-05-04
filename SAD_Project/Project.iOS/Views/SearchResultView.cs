@@ -52,8 +52,6 @@ namespace Project.iOS.Views
 
             map.SetCenterCoordinate(coord, true);
 
-            //////////////////////////////////
-
             DismissViewController(false, null);
         }
 
