@@ -16,10 +16,9 @@ namespace Project.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel<HistoryItem>
     {
-        //ctor
         private readonly IMainService _mainService;
         private readonly IMvxNavigationService _navigationService;
-        private readonly ISearchHistoryService _searchHistoryService;
+        //private readonly ISearchHistoryService _searchHistoryService;
 
         private HistoryItem _selectedHistoryItem;
 
@@ -31,27 +30,17 @@ namespace Project.Core.ViewModels
             }
         }
 
-
-        //public MKMapView mainMap { get; set; }
-
-
-        public MainViewModel(IMainService mainService, ISearchHistoryService searchHistoryService, IMvxNavigationService navigationService)
+        //ctor
+        public MainViewModel(IMainService mainService, IMvxNavigationService navigationService)
         {
             _mainService = mainService;
             _navigationService = navigationService;
-            _searchHistoryService = searchHistoryService;
 
             //mainMap = new MKMapView();
             //CLLocationCoordinate2D coord = new CLLocationCoordinate2D(50, 50);
             //mainMap.SetCenterCoordinate(coord, true);
 
         }
-
-        //Props
-
-
-        //Methods //Services gebruiken, ya dolt!
-
 
         /*Commands: speciale properties in een ViewModel waaraan we een actie kunnen koppelen. 
         De command zelf binden we dan aan een knop. Wanneer iemand op de knop drukt dan zal het command uitgevoerd worden.*/
@@ -70,22 +59,18 @@ namespace Project.Core.ViewModels
             //_navigationService.Navigate<TestViewModel>();
         }
 
-
-        /*public IMvxCommand AddAnnoCommand
+        public async void PostHistoryItem(HistoryItem item)
         {
-            get
-            {
-                return new MvxCommand(test);
-            }
+            await _mainService.AddHistoryItem(item);
         }
-        public void test()
-        {
-            Debug.WriteLine("sdgfhsdjhfdskf");
-        }*/
 
+        //When navigating back from other viewmodel with SelectedHistoryItem info, put it in the SelectedHistoryItem Variable
+        //Afterwards the View will access it directly for use in the Map.
         public override void Prepare(HistoryItem parameter)
         {
             this.SelectedHistoryItem = parameter;
         }
+
+
     }
 }

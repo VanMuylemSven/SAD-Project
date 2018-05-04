@@ -5,7 +5,9 @@ using MapKit;
 using System.Collections.Generic;
 using CoreLocation;
 using System.Linq;
-
+using MvvmCross.Binding.BindingContext;
+using Project.Core.ViewModels;
+using Project.Core.Models;
 
 namespace Project.iOS.Views
 {
@@ -15,11 +17,12 @@ namespace Project.iOS.Views
         MKMapView map;
 
         public List<MKMapItem> MapItems { get; set; }
+        MainViewModel _mainViewModel;
 
-        public SearchResultsView(MKMapView map)
+        public SearchResultsView(MKMapView map, MainViewModel mainViewModel)
         {
             this.map = map;
-
+            _mainViewModel = mainViewModel;
             MapItems = new List<MKMapItem>();
         }
 
@@ -59,6 +62,18 @@ namespace Project.iOS.Views
 
             map.SetCenterCoordinate(coord, true);
 
+            //Also POST this item to the RecentHistory API
+            HistoryItem item = new HistoryItem()
+            {
+                Id = "0",
+                Name = MapItems[indexPath.Row].Name,
+                DateOfSearch = DateTime.Now.ToString(),
+                Latitude = coord.Latitude.ToString(),
+                Longitude = coord.Longitude.ToString()
+            };
+            _mainViewModel.PostHistoryItem(item);
+
+            //Back to main view
             DismissViewController(false, null);
         }
 

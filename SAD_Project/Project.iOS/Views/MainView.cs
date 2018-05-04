@@ -3,6 +3,7 @@ using Foundation;
 using MapKit;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
+using MvvmCross.Plugins.Messenger;
 using Project.Core.Models;
 using Project.Core.ViewModels;
 using Project.iOS.Models;
@@ -21,9 +22,9 @@ namespace Project.iOS.Views
         CLLocationManager locationManager = new CLLocationManager();
         HistoryItem selectedHistoryItem;
 
-
         public MainView(IntPtr handle) : base(handle)
         {
+            //_messenger = messenger;
         }
 
         public override void ViewDidLoad()
@@ -45,16 +46,7 @@ namespace Project.iOS.Views
             // BINDING //
             MvxFluentBindingDescriptionSet<MainView, MainViewModel> set = new MvxFluentBindingDescriptionSet<MainView, MainViewModel>(this);
             set.Bind(recentHistoryBarButton).To(vm => vm.SearchHistoryCommand); //show Search History window
-
             //set.Bind(BtnTest).To(vm => vm.SearchHistoryCommand);
-
-            //Bind map to the viewmodel prop, so it can access it.
-            //set.Bind(MainMap).To(vm => vm.mainMap); //CRASH
-            set.Bind(selectedHistoryItem).For(item => item.Name).To(vm => vm.SelectedHistoryItem.Name);
-            //set.Bind(this).For(s => s.selectedHistoryItem).To(vm => vm.SelectedHistoryItem);
-            //set.Bind(AddMapAnnotation).To(vm => vm.AddAnnoCommand); //////////////////////////////////////////////////
-
-            
 
             set.Apply();
 
@@ -107,7 +99,7 @@ namespace Project.iOS.Views
 
             ////////////
             //Local Search UIBar
-            var searchResultsController = new SearchResultsView(MainMap);
+            var searchResultsController = new SearchResultsView(MainMap, mainVM); //Also give the Viewmodel, so we can access it for the Messenger/Posting
 
             var searchUpdater = new SearchResultsUpdater();
             searchUpdater.UpdateSearchResults += searchResultsController.Search;

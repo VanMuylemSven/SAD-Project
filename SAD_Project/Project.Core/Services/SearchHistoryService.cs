@@ -11,7 +11,7 @@ namespace Project.Core.Services
     public class SearchHistoryService : ISearchHistoryService
     {
 
-        private static List<HistoryItem> historyItems = new List<HistoryItem>();
+        //private static List<HistoryItem> historyItems = new List<HistoryItem>();
         private readonly ISearchHistoryRepository _searchHistoryRepository;
 
         //Ctor

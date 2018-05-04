@@ -1,7 +1,10 @@
-﻿namespace Project.Core.Services
+﻿using System.Threading.Tasks;
+using Project.Core.Models;
+
+namespace Project.Core.Services
 {
     public interface IMainService
     {
-        void Test();
+        Task AddHistoryItem(HistoryItem item);
     }
 }

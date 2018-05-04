@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Project.Core.Models;
+using Project.Core.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +10,17 @@ namespace Project.Core.Services
 {
     public class MainService : IMainService
     {
-        //TODO: DElete + in Imainservice deleten
-        public void Test()
-        {
+        private readonly ISearchHistoryRepository _searchHistoryRepository;
 
+        //Ctor
+        public MainService(ISearchHistoryRepository searchHistoryRepository)
+        {
+            _searchHistoryRepository = searchHistoryRepository;
+        }
+
+        public async Task AddHistoryItem(HistoryItem item)
+        {
+            await _searchHistoryRepository.PosthistoryItem(item);
         }
     }
 }
