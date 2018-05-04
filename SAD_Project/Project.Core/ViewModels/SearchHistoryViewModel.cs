@@ -22,7 +22,7 @@ namespace Project.Core.ViewModels
 
         /*define the classes which will subscribe to and receive these messages. Each of these classes must call one of the Subscribe methods 
          * on the IMvxMessenger and must store the returned token. For example part of a ViewModel receiving LocationMessages might look like:*/
-        private readonly MvxSubscriptionToken _token; 
+        //private readonly MvxSubscriptionToken _token; 
 
         public List<HistoryItem> HistoryItems
         {
@@ -41,7 +41,7 @@ namespace Project.Core.ViewModels
             _searchHistoryService = searchHistoryService;
             _navigationService = navigationService;
                 //Subscribe - messages will be passed directly on the Publish thread.
-            _token = messenger.Subscribe<HistoryItemMessage>(OnHistoryItemMessage); 
+            //_token = messenger.Subscribe<HistoryItemMessage>(OnHistoryItemMessage); 
 
             /* //Test post history */
             /*string date = DateTime.Now.ToString();
@@ -55,13 +55,13 @@ namespace Project.Core.ViewModels
         }
 
         //Messenger
-        private void OnHistoryItemMessage(HistoryItemMessage historyItemMessage)
+        /*private void OnHistoryItemMessage(HistoryItemMessage historyItemMessage)
         {
             Debug.WriteLine("RECEIVED HISTORY ITEM TO POST FROM MESSAGE");
 
             //Now Post received historyItem to the HistoryAPI
             //PostHistory(historyItemMessage.NewHistoryItem);
-        }
+        }*/
 
         private async void FillHistory()
         {
@@ -86,11 +86,6 @@ namespace Project.Core.ViewModels
             _navigationService.Navigate<MainViewModel, HistoryItem>(hiParam);
         }
 
-
-        public static List<HistoryItem> GetHistoryItems()
-        {
-            return StaticHistoryItems;
-        }
 
         public IMvxCommand PostHistoryItem
         {

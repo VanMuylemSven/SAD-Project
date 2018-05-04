@@ -26,12 +26,6 @@ namespace Project.iOS.Views
             MapItems = new List<MKMapItem>();
         }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
-
-        }
 
         public override nint RowsInSection(UITableView tableView, nint section)
         {

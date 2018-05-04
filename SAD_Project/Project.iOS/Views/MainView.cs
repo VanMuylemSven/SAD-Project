@@ -31,25 +31,27 @@ namespace Project.iOS.Views
         {
             base.ViewDidLoad();
 
-            //Bottom Tab bar 
-            UIBarButtonItem recentHistoryBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Bookmarks);
-            UIBarButtonItem[] toolbarItems = new UIBarButtonItem[] {
+            //If not having selected an item, do show the History/... bottom bars + search bar
+            if (selectedHistoryItem == null)
+            {
+                //Bottom Tab bar 
+                UIBarButtonItem recentHistoryBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Bookmarks);
+                UIBarButtonItem[] toolbarItems = new UIBarButtonItem[] {
                 recentHistoryBarButton//,
                 //...
-            };
+                };
 
-            this.SetToolbarItems(toolbarItems, false);
-            this.NavigationController.ToolbarHidden = false;
+                this.SetToolbarItems(toolbarItems, false);
+                this.NavigationController.ToolbarHidden = false;
 
+                /////////////
+                // BINDING //
+                MvxFluentBindingDescriptionSet<MainView, MainViewModel> set = new MvxFluentBindingDescriptionSet<MainView, MainViewModel>(this);
+                set.Bind(recentHistoryBarButton).To(vm => vm.SearchHistoryCommand); //show Search History window
+                                                                                    //set.Bind(BtnTest).To(vm => vm.SearchHistoryCommand);
 
-            /////////////
-            // BINDING //
-            MvxFluentBindingDescriptionSet<MainView, MainViewModel> set = new MvxFluentBindingDescriptionSet<MainView, MainViewModel>(this);
-            set.Bind(recentHistoryBarButton).To(vm => vm.SearchHistoryCommand); //show Search History window
-            //set.Bind(BtnTest).To(vm => vm.SearchHistoryCommand);
-
-            set.Apply();
-
+                set.Apply();
+            }
 
             ////////////
             // MapKit //
@@ -97,26 +99,30 @@ namespace Project.iOS.Views
             mapDelegate = new MyMapDelegate();
             MainMap.Delegate = mapDelegate;
 
+
             ////////////
             //Local Search UIBar
-            var searchResultsController = new SearchResultsView(MainMap, mainVM); //Also give the Viewmodel, so we can access it for the Messenger/Posting
-
-            var searchUpdater = new SearchResultsUpdater();
-            searchUpdater.UpdateSearchResults += searchResultsController.Search;
-
-            //add the search controller
-            searchController = new UISearchController(searchResultsController)
+            if (selectedHistoryItem == null)
             {
-                SearchResultsUpdater = searchUpdater
-            };
+                var searchResultsController = new SearchResultsView(MainMap, mainVM); //Also give the Viewmodel, so we can access it for the Messenger/Posting
 
-            searchController.SearchBar.SizeToFit();
-            searchController.SearchBar.SearchBarStyle = UISearchBarStyle.Minimal;
-            searchController.SearchBar.Placeholder = "Enter a search query";
+                var searchUpdater = new SearchResultsUpdater();
+                searchUpdater.UpdateSearchResults += searchResultsController.Search;
 
-            searchController.HidesNavigationBarDuringPresentation = false;
-            NavigationItem.TitleView = searchController.SearchBar;
-            DefinesPresentationContext = true;
+                //add the search controller
+                searchController = new UISearchController(searchResultsController)
+                {
+                    SearchResultsUpdater = searchUpdater
+                };
+
+                searchController.SearchBar.SizeToFit();
+                searchController.SearchBar.SearchBarStyle = UISearchBarStyle.Minimal;
+                searchController.SearchBar.Placeholder = "Enter a search query";
+
+                searchController.HidesNavigationBarDuringPresentation = false;
+                NavigationItem.TitleView = searchController.SearchBar;
+                DefinesPresentationContext = true;
+            }
 
             //Compass
             var compass = MKCompassButton.FromMapView(MainMap);

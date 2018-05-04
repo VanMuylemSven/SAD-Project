@@ -67,7 +67,6 @@
     <Compile Include="Models\MyMapDelegate.cs" />
     <Compile Include="Models\SearchResultsUpdater.cs" />
     <Compile Include="TableViewSources\SearchHistoryViewSource.cs" />
-    <Compile Include="TableViewSources\SearchResultViewSource.cs" />
     <Compile Include="Views\SearchHistoryTableCell.cs" />
     <Compile Include="Views\SearchHistoryTableCell.designer.cs">
       <DependentUpon>SearchHistoryTableCell.cs</DependentUpon>
@@ -76,7 +75,6 @@
     <Compile Include="Views\SearchHistoryView.designer.cs">
       <DependentUpon>SearchHistoryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\SearchResultTableCell.cs" />
     <Compile Include="Views\TestView.cs" />
     <Compile Include="Views\TestView.designer.cs">
       <DependentUpon>TestView.cs</DependentUpon>
