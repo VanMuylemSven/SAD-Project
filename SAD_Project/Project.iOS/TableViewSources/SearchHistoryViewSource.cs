@@ -38,9 +38,10 @@ namespace Project.iOS.TableViewSources
             }
         }
 
+        //Set row height manually.
         public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
         {
-            return 100f;
+            return 110f;
         }
 
 

@@ -16,6 +16,10 @@ namespace Project.iOS.Views
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblID { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel lblLat { get; set; }
 
         [Outlet]
@@ -32,6 +36,11 @@ namespace Project.iOS.Views
 
         void ReleaseDesignerOutlets ()
         {
+            if (lblID != null) {
+                lblID.Dispose ();
+                lblID = null;
+            }
+
             if (lblLat != null) {
                 lblLat.Dispose ();
                 lblLat = null;

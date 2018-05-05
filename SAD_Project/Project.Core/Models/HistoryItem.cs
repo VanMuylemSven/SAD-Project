@@ -10,8 +10,17 @@ namespace Project.Core.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string DateOfSearch { get; set; }
 
+        private string _dateOfSearch;
+        public string DateOfSearch
+        {
+            get { return _dateOfSearch; }
+            set {
+                _dateOfSearch = DateTime.Parse(value).ToString("F"); //Sets the Datetime to a more readable format.
+                //Have to do that here because I made this change way too late and its already like this in the database for older items. :(
+            }
+        }
+        
         private string _latitude;
         public string Latitude
         {

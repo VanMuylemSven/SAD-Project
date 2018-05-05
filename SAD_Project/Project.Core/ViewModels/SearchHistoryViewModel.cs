@@ -44,7 +44,9 @@ namespace Project.Core.ViewModels
 
             //Fill the table with data from the SearchHistory API
             FillHistory();
+
             
+
         }
 
         //Messenger

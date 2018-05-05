@@ -28,6 +28,7 @@ namespace Project.iOS.Views
             set.Bind(lblTime).For(lbl => lbl.Text).To(res => res.DateOfSearch);
             set.Bind(lblLat).For(lbl => lbl.Text).To(res => res.Latitude);
             set.Bind(lblLong).For(lbl => lbl.Text).To(res => res.Longitude);
+            set.Bind(lblID).For(lbl => lbl.Text).To(res => res.Id);
             set.Apply();
 
         }
