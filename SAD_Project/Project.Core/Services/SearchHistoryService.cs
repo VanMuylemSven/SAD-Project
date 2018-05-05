@@ -11,7 +11,6 @@ namespace Project.Core.Services
     public class SearchHistoryService : ISearchHistoryService
     {
 
-        //private static List<HistoryItem> historyItems = new List<HistoryItem>();
         private readonly ISearchHistoryRepository _searchHistoryRepository;
 
         //Ctor
@@ -34,6 +33,10 @@ namespace Project.Core.Services
         public async Task DeleteHistoryItem(string id)
         {
             await _searchHistoryRepository.DeleteHistoryItem(id);
+        }
+        public async Task<List<HistoryItem>> GetHistoryByName(string name)
+        {
+            return await _searchHistoryRepository.GetHistoryByName(name);
         }
 
 

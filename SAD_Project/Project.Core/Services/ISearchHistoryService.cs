@@ -9,5 +9,6 @@ namespace Project.Core.Services
         Task AddHistoryItem(HistoryItem item);
         Task DeleteHistoryItem(string id);
         Task<List<HistoryItem>> GetHistoryItems();
+        Task<List<HistoryItem>> GetHistoryByName(string name);
     }
 }

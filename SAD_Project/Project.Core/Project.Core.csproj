@@ -40,11 +40,12 @@
     <Compile Include="App.cs" />
     <Compile Include="Models\HistoryItem.cs" />
     <Compile Include="Models\HistoryItemMessage.cs" />
+    <Compile Include="Models\MyMapDelegate.cs" />
+    <Compile Include="Models\SearchResultsUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ISearchHistoryRepository.cs" />
     <Compile Include="Repositories\SearchHistoryRepository.cs" />
-    <Compile Include="Services\HistoryMessageService.cs" />
     <Compile Include="Services\IMainService.cs" />
     <Compile Include="Services\ISearchHistoryService.cs" />
     <Compile Include="Services\ITestService.cs" />

@@ -7,7 +7,7 @@ using Foundation;
 using MapKit;
 using UIKit;
 
-namespace Project.iOS.Models
+namespace Project.Core.Models
 {
     public class MyMapDelegate : MKMapViewDelegate
     {

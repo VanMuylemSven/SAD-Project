@@ -19,11 +19,6 @@ namespace Project.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
 
         private List<HistoryItem> _historyItems;
-
-        /*define the classes which will subscribe to and receive these messages. Each of these classes must call one of the Subscribe methods 
-         * on the IMvxMessenger and must store the returned token. For example part of a ViewModel receiving LocationMessages might look like:*/
-        //private readonly MvxSubscriptionToken _token; 
-
         public List<HistoryItem> HistoryItems
         {
             get { return _historyItems; }
@@ -32,8 +27,12 @@ namespace Project.Core.ViewModels
             }
         }
 
-        //To do: Do not use static copy????
-        public static List<HistoryItem> StaticHistoryItems { get; set; }
+        /*define the classes which will subscribe to and receive these messages. Each of these classes must call one of the Subscribe methods 
+        * on the IMvxMessenger and must store the returned token.*/
+        //private readonly MvxSubscriptionToken _token; 
+
+        //no static. :<
+        //public static List<HistoryItem> StaticHistoryItems { get; set; }
 
         //ctor
         public SearchHistoryViewModel(ISearchHistoryService searchHistoryService, IMvxNavigationService navigationService, IMvxMessenger messenger)
@@ -42,12 +41,6 @@ namespace Project.Core.ViewModels
             _navigationService = navigationService;
                 //Subscribe - messages will be passed directly on the Publish thread.
             //_token = messenger.Subscribe<HistoryItemMessage>(OnHistoryItemMessage); 
-
-            /* //Test post history */
-            /*string date = DateTime.Now.ToString();
-            HistoryItem testItem = new HistoryItem() { Id="10", Name = "Test7", DateOfSearch = date,
-                Latitude = "55.5", Longitude = "42.2" } ;
-            PostHistory(testItem);*/
 
             //Fill the table with data from the SearchHistory API
             FillHistory();
@@ -66,7 +59,7 @@ namespace Project.Core.ViewModels
         private async void FillHistory()
         {
             HistoryItems = await _searchHistoryService.GetHistoryItems();
-            StaticHistoryItems = HistoryItems;
+            //StaticHistoryItems = HistoryItems;
         }
 
         private async void PostHistory(HistoryItem item)
@@ -93,8 +86,21 @@ namespace Project.Core.ViewModels
             {
                 return new MvxCommand<HistoryItem>(PostHistory);
             }
-
         }
 
+        public IMvxCommand<int> RemoveRowCommand
+        {
+            get
+            {
+                return new MvxCommand<int>(RemoveHistoryItem);
+            }
+        }
+
+        private void RemoveHistoryItem(int index)
+        {
+            HistoryItem historyItem = HistoryItems[index];
+            _searchHistoryService.DeleteHistoryItem(historyItem.Id);
+            FillHistory();
+        }
     }
 }

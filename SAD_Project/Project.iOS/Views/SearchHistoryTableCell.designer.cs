@@ -14,8 +14,43 @@ namespace Project.iOS.Views
     [Register ("SearchHistoryTableCell")]
     partial class SearchHistoryTableCell
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblLat { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblLong { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblTime { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblTitle { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (lblLat != null) {
+                lblLat.Dispose ();
+                lblLat = null;
+            }
+
+            if (lblLong != null) {
+                lblLong.Dispose ();
+                lblLong = null;
+            }
+
+            if (lblTime != null) {
+                lblTime.Dispose ();
+                lblTime = null;
+            }
+
+            if (lblTitle != null) {
+                lblTitle.Dispose ();
+                lblTitle = null;
+            }
         }
     }
 }

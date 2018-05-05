@@ -60,12 +60,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Views\HistoryDetailView.cs" />
+    <Compile Include="Views\HistoryDetailView.designer.cs">
+      <DependentUpon>HistoryDetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
-    <Compile Include="Models\MyMapDelegate.cs" />
-    <Compile Include="Models\SearchResultsUpdater.cs" />
     <Compile Include="TableViewSources\SearchHistoryViewSource.cs" />
     <Compile Include="Views\SearchHistoryTableCell.cs" />
     <Compile Include="Views\SearchHistoryTableCell.designer.cs">

@@ -6,7 +6,6 @@ using MvvmCross.iOS.Views;
 using MvvmCross.Plugins.Messenger;
 using Project.Core.Models;
 using Project.Core.ViewModels;
-using Project.iOS.Models;
 using System;
 using System.Diagnostics;
 using UIKit;
@@ -31,7 +30,14 @@ namespace Project.iOS.Views
         {
             base.ViewDidLoad();
 
-            //If not having selected an item, do show the History/... bottom bars + search bar
+            //If no historyitem is selected
+            var mainVM = this.ViewModel as MainViewModel; //To get the item from the ViewModel, Get it via the VM itself, and cast it as that type of VM.
+            if (mainVM != null)
+            {
+                selectedHistoryItem = mainVM.SelectedHistoryItem;
+            }
+
+            //If you haven't selected an item,  show the History/... bottom bars + search bar
             if (selectedHistoryItem == null)
             {
                 //Bottom Tab bar 
@@ -48,9 +54,12 @@ namespace Project.iOS.Views
                 // BINDING //
                 MvxFluentBindingDescriptionSet<MainView, MainViewModel> set = new MvxFluentBindingDescriptionSet<MainView, MainViewModel>(this);
                 set.Bind(recentHistoryBarButton).To(vm => vm.SearchHistoryCommand); //show Search History window
-                                                                                    //set.Bind(BtnTest).To(vm => vm.SearchHistoryCommand);
 
                 set.Apply();
+            }
+            else
+            {
+                this.NavigationController.ToolbarHidden = true;
             }
 
             ////////////
@@ -72,12 +81,7 @@ namespace Project.iOS.Views
             //MainMap.CenterCoordinate = mapCenter/*MainMap.UserLocation.Coordinate*/;
             MainMap.Region = mapRegion;
 
-            //If no historyitem is selected
-            var mainVM = this.ViewModel as MainViewModel; //To get the item from the ViewModel, Get it via the VM itself, and cast it as that type of VM.
-            if (mainVM != null) 
-            {
-                selectedHistoryItem = mainVM.SelectedHistoryItem;
-            }
+            
             if (selectedHistoryItem != null)
             {
                 CLLocationCoordinate2D coordinate2D = new CLLocationCoordinate2D(double.Parse(selectedHistoryItem.Latitude), double.Parse(selectedHistoryItem.Longitude));

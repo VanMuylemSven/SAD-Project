@@ -17,7 +17,6 @@ namespace Project.iOS.TableViewSources
 {
     public class SearchHistoryViewSource : MvxTableViewSource
     {
-
         public SearchHistoryViewSource(UITableView tableView) : base(tableView)
         {
         }
@@ -29,6 +28,7 @@ namespace Project.iOS.TableViewSources
             try
             {
                 var cell = (SearchHistoryTableCell)tableView.DequeueReusableCell(SearchHistoryTableCell.Identifier, indexPath);
+
                 return cell;
             }
             catch (Exception ex)
@@ -38,14 +38,37 @@ namespace Project.iOS.TableViewSources
             }
         }
 
-        
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
         {
-            base.RowSelected(tableView, indexPath);
-            
-
+            return 100f;
         }
 
+
+        public override nint RowsInSection(UITableView tableview, nint section)
+        {
+            return base.RowsInSection(tableview, section);
+        }
+
+        //Delete button
+        public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
+        {
+            return true;
+        }
+        public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+        {
+            switch (editingStyle)
+            {
+                case UITableViewCellEditingStyle.Delete:
+                    RemoveRowCommand.Execute(indexPath.Row);
+                    break;
+                case UITableViewCellEditingStyle.Insert:
+                    break;
+                case UITableViewCellEditingStyle.None:
+                    break;
+            }
+        }
+
+        public IMvxCommand RemoveRowCommand { get; set; }
 
 
 

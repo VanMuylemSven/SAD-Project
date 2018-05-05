@@ -22,5 +22,6 @@ namespace Project.Core.Services
         {
             await _searchHistoryRepository.PosthistoryItem(item);
         }
+
     }
 }

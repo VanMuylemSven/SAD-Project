@@ -30,15 +30,12 @@ namespace Project.Core.ViewModels
             }
         }
 
+
         //ctor
         public MainViewModel(IMainService mainService, IMvxNavigationService navigationService)
         {
             _mainService = mainService;
             _navigationService = navigationService;
-
-            //mainMap = new MKMapView();
-            //CLLocationCoordinate2D coord = new CLLocationCoordinate2D(50, 50);
-            //mainMap.SetCenterCoordinate(coord, true);
 
         }
 
@@ -70,6 +67,7 @@ namespace Project.Core.ViewModels
         {
             this.SelectedHistoryItem = parameter;
         }
+
 
 
     }

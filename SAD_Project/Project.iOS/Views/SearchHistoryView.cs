@@ -26,23 +26,23 @@ namespace Project.iOS.Views
         public override void ViewDidLoad()
         {
             _searchHistoryViewSource = new SearchHistoryViewSource(this.TableView);
-            base.ViewDidLoad();
 
+            base.ViewDidLoad();
+            //Set viewsource properties
             this.TableView.Source = _searchHistoryViewSource;
-            this.TableView.ReloadData();
+            this.TableView.RowHeight = UITableView.AutomaticDimension;
 
             MvxFluentBindingDescriptionSet<SearchHistoryView, SearchHistoryViewModel> set = new MvxFluentBindingDescriptionSet<SearchHistoryView, SearchHistoryViewModel>(this);
             set.Bind(_searchHistoryViewSource).To(vm => vm.HistoryItems);
             set.Bind(HistoryItems).To(vm => vm.HistoryItems);
-
-            //Setting annotation in the mainview
-            //MvxFluentBindingDescriptionSet<SearchHistoryView, MainViewModel> set2 = new MvxFluentBindingDescriptionSet<SearchHistoryView, MainViewModel>(this);
-            //set2.Bind(_searchHistoryViewSource).For(s => s.SelectionChangedCommand).To(vm => vm.AddAnnoCommand);
-            //set.Bind(_searchHistoryViewSource.SelectionChangedCommand).To(vm => vm.HistoryNavCommand);
+            
             set.Bind(_searchHistoryViewSource).For(s => s.SelectionChangedCommand).To(vm => vm.HistoryNavCommand);
+            set.Bind(_searchHistoryViewSource).For(s => s.RemoveRowCommand).To(vm => vm.RemoveRowCommand); //Delete
 
             set.Apply();
-            //set2.Apply();
+
+            this.TableView.EstimatedRowHeight = 100f;
+            this.TableView.ReloadData();
         }
 
     }

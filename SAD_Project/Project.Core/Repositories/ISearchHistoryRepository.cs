@@ -9,5 +9,6 @@ namespace Project.Core.Repositories
         Task DeleteHistoryItem(string id);
         Task<List<HistoryItem>> GetHistory();
         Task<HistoryItem> PosthistoryItem(HistoryItem historyItem);
+        Task<List<HistoryItem>> GetHistoryByName(string name);
     }
 }

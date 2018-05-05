@@ -61,10 +61,18 @@ namespace Project.iOS.Views
             {
                 Id = "0",
                 Name = MapItems[indexPath.Row].Name,
-                DateOfSearch = DateTime.Now.ToString(),
+                DateOfSearch = DateTime.Now.ToString("F"),
                 Latitude = coord.Latitude.ToString(),
                 Longitude = coord.Longitude.ToString()
             };
+            /*string test = DateTime.Now.ToLongDateString();
+            test = DateTime.Now.ToLongTimeString();
+            test = DateTime.Now.ToShortDateString();
+            test = DateTime.Now.ToShortTimeString();
+            test = DateTime.Now.ToString();
+            test = DateTime.Now.ToString("f0");
+            test = DateTime.Now.ToString("F");*/
+
             _mainViewModel.PostHistoryItem(item);
 
             //Back to main view

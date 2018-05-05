@@ -6,9 +6,9 @@ using System.Text;
 using Foundation;
 using UIKit;
 
-namespace Project.iOS.Models
+namespace Project.Core.Models
 {
-    /*The implementation adds an annotation to the map when an item is selected from the results*/
+    /*Adds an annotation to the map when an item is selected from the results*/
     public class SearchResultsUpdater : UISearchResultsUpdating
     {
         public event Action<string> UpdateSearchResults = delegate { };
