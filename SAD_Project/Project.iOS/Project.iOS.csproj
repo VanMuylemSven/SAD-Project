@@ -60,6 +60,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Views\SearchHistoryFilterView.cs" />
+    <Compile Include="Views\SearchHistoryFilterView.designer.cs">
+      <DependentUpon>SearchHistoryFilterView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\HistoryDetailView.cs" />
     <Compile Include="Views\HistoryDetailView.designer.cs">
       <DependentUpon>HistoryDetailView.cs</DependentUpon>

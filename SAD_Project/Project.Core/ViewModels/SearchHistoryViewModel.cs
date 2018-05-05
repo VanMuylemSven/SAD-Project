@@ -63,12 +63,24 @@ namespace Project.Core.ViewModels
             HistoryItems = await _searchHistoryService.GetHistoryItems();
             //StaticHistoryItems = HistoryItems;
         }
+        /*private async void FillHistoryByName(string name)
+        {
+            HistoryItems = await _searchHistoryService.GetHistoryByName(name);
+        }*/
 
         private async void PostHistory(HistoryItem item)
         {
             await _searchHistoryService.AddHistoryItem(item);
             //await _navigationService.Navigate... //Back to mainscreen
         }
+
+        /*public IMvxCommand FilterHistoryCommand
+        {
+            get
+            {
+                return new MvxCommand<string>(FillHistoryByName);
+            }
+        }*/
 
         public IMvxCommand HistoryNavCommand {
             get {
@@ -80,6 +92,7 @@ namespace Project.Core.ViewModels
         {
             _navigationService.Navigate<MainViewModel, HistoryItem>(hiParam);
         }
+
 
 
         public IMvxCommand PostHistoryItem

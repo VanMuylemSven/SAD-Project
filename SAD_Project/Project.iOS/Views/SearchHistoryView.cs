@@ -23,12 +23,16 @@ namespace Project.iOS.Views
         }
 
         private SearchHistoryViewSource _searchHistoryViewSource;
+        //private SearchHistoryFilterViewSource _searchHistoryFilterViewSource;
+
         public override void ViewDidLoad()
         {
             _searchHistoryViewSource = new SearchHistoryViewSource(this.TableView);
+            //_searchHistoryFilterViewSource = new SearchHistoryFilterViewSource(this.TableView);
 
             base.ViewDidLoad();
             //Set viewsource properties
+            //this.TableView.Source = _searchHistoryFilterViewSource;
             this.TableView.Source = _searchHistoryViewSource;
             this.TableView.RowHeight = UITableView.AutomaticDimension;
 
