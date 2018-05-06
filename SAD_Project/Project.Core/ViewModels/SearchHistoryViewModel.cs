@@ -30,7 +30,7 @@ namespace Project.Core.ViewModels
 
         /*define the classes which will subscribe to and receive these messages. Each of these classes must call one of the Subscribe methods 
         * on the IMvxMessenger and must store the returned token.*/
-        //private readonly MvxSubscriptionToken _token; 
+        private readonly MvxSubscriptionToken _token; 
 
         //no static. :<
         //public static List<HistoryItem> StaticHistoryItems { get; set; }
@@ -40,33 +40,19 @@ namespace Project.Core.ViewModels
         {
             _searchHistoryService = searchHistoryService;
             _navigationService = navigationService;
-                //Subscribe - messages will be passed directly on the Publish thread.
-            //_token = messenger.Subscribe<HistoryItemMessage>(OnHistoryItemMessage); 
+            //Subscribe - Whenever a SearchFilterMessage is received, trigger the OnFIlterMessage method 
+            _token = messenger.Subscribe<SearchFilterMessage>((message => { OnFilterMessage(message.FilterName); })
+                );
 
             //Fill the table with data from the SearchHistory API
             FillHistory();
         }
 
-        //Messenger
-        /*private void OnHistoryItemMessage(HistoryItemMessage historyItemMessage)
-        {
-            Debug.WriteLine("RECEIVED HISTORY ITEM TO POST FROM MESSAGE");
-
-            //Now Post received historyItem to the HistoryAPI
-            //PostHistory(historyItemMessage.NewHistoryItem);
-        }*/
-
         private async void FillHistory()
         {
             HistoryItems = await _searchHistoryService.GetHistoryItems();
             Analytics.TrackEvent("Search History - GETting history items from API");
-            //StaticHistoryItems = HistoryItems;
         }
-        /*private async void FillHistoryByName(string name)
-        {
-            HistoryItems = await _searchHistoryService.GetHistoryByName(name);
-            Analytics.TrackEvent("Search History - GETting Filtered history items from API");
-        }*/
 
         private async void PostHistory(HistoryItem item)
         {
@@ -75,13 +61,7 @@ namespace Project.Core.ViewModels
             //await _navigationService.Navigate... //Back to mainscreen
         }
 
-        /*public IMvxCommand FilterHistoryCommand
-        {
-            get
-            {
-                return new MvxCommand<string>(FillHistoryByName);
-            }
-        }*/
+ 
 
         public IMvxCommand HistoryNavCommand {
             get {
@@ -118,6 +98,28 @@ namespace Project.Core.ViewModels
             _searchHistoryService.DeleteHistoryItem(historyItem.Id);
             FillHistory();
             Analytics.TrackEvent("Search History - DELETEing item from API");
+        }
+
+
+        /* Do this Whenever the SearchFilterMessage is Received */
+        public async void OnFilterMessage(string name)
+        {
+            HistoryItems = await _searchHistoryService.GetHistoryByName(name);
+            Analytics.TrackEvent("Search History - GETting filtered history items from API");
+        }
+
+
+        public IMvxCommand TestCommand
+        {
+            get
+            {
+                return new MvxCommand(testlog);
+            }
+        }
+
+        private void testlog()
+        {
+            int i = 0;
         }
     }
 }

@@ -71,6 +71,9 @@
     <Reference Include="MvvmCross.Platform.Wpf, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Platform.5.7.0\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.7.0\lib\net45\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmCross.Tests, Version=6.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Tests.6.0.1\lib\netstandard2.0\MvvmCross.Tests.dll</HintPath>
     </Reference>
@@ -91,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Tests\MainViewModelTest.cs" />
     <Compile Include="MockDispatcher.cs" />
     <Compile Include="Tests\SearchHistoryViewModelTest.cs" />

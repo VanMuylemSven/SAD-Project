@@ -14,21 +14,17 @@ namespace Project.iOS.Views
     [MvxFromStoryboard(StoryboardName ="Main")]
     public partial class SearchHistoryView : MvxTableViewController<SearchHistoryViewModel>
     {
-        //Get map from MainView?
         public List<HistoryItem> HistoryItems { get; set; }
+        private SearchHistoryViewSource _searchHistoryViewSource;
 
         public SearchHistoryView (IntPtr handle) : base (handle)
         {
             
         }
 
-        private SearchHistoryViewSource _searchHistoryViewSource;
-        //private SearchHistoryFilterViewSource _searchHistoryFilterViewSource;
-
         public override void ViewDidLoad()
         {
             _searchHistoryViewSource = new SearchHistoryViewSource(this.TableView);
-            //_searchHistoryFilterViewSource = new SearchHistoryFilterViewSource(this.TableView);
 
             base.ViewDidLoad();
             //Set viewsource properties

@@ -41,6 +41,7 @@
     <Compile Include="Models\HistoryItem.cs" />
     <Compile Include="Models\HistoryItemMessage.cs" />
     <Compile Include="Models\MyMapDelegate.cs" />
+    <Compile Include="Models\SearchFilterMessage.cs" />
     <Compile Include="Models\SearchResultsUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Services\SearchHistoryService.cs" />
     <Compile Include="Services\TestService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SearchHistoryFilterViewModel.cs" />
     <Compile Include="ViewModels\SearchHistoryViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
   </ItemGroup>
