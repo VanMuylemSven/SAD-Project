@@ -104,8 +104,18 @@ namespace Project.Core.ViewModels
         /* Do this Whenever the SearchFilterMessage is Received */
         public async void OnFilterMessage(string name)
         {
-            HistoryItems = await _searchHistoryService.GetHistoryByName(name);
-            Analytics.TrackEvent("Search History - GETting filtered history items from API");
+            //if(name == null || name == "" )
+            if(string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
+            {
+                Analytics.TrackEvent("Search History - Filter is invalid, so GET all history instead");
+                FillHistory();
+            }
+            else
+            {
+                HistoryItems = await _searchHistoryService.GetHistoryByName(name);
+                Analytics.TrackEvent("Search History - GETting filtered history items from API");
+            }
+            
         }
 
 

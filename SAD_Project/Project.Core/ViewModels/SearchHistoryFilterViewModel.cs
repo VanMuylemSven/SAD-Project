@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using Microsoft.AppCenter.Analytics;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using Project.Core.Models;
 using System;
@@ -21,12 +22,10 @@ namespace Project.Core.ViewModels
             }
         }
 
-        private  MvxSubscriptionToken _token;
-        IMvxMessenger _messenger;
+        private IMvxMessenger _messenger;
         public SearchHistoryFilterViewModel(IMvxMessenger messenger)
         {
-            //_token = messenger.Subscribe
-            //_messenger = messenger;
+            //_token = messenger.Subscribe...
             //messenger.Publish<SearchFilterMessage>(FilterByName());
             _messenger = messenger;
         }
@@ -41,6 +40,7 @@ namespace Project.Core.ViewModels
 
         public void FilterByName()
         {
+            Analytics.TrackEvent("Filter ViewModel - Sending FilterMessage to SearchHistoryViewModel via ImvxMessenger");
             Debug.WriteLine(Name);
             SearchFilterMessage message = new SearchFilterMessage(this, Name);
             //Send message
