@@ -1,5 +1,6 @@
 ﻿using CoreLocation;
 using MapKit;
+using Microsoft.AppCenter.Analytics;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using Project.Core.Models;
@@ -36,7 +37,7 @@ namespace Project.Core.ViewModels
         {
             _mainService = mainService;
             _navigationService = navigationService;
-
+            Analytics.TrackEvent("MainViewModel - constructor event");
         }
 
         /*Commands: speciale properties in een ViewModel waaraan we een actie kunnen koppelen. 

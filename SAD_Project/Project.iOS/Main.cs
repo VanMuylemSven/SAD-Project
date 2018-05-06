@@ -1,4 +1,6 @@
-﻿using UIKit;
+﻿using Microsoft.AppCenter.Crashes;
+using System.Collections.Generic;
+using UIKit;
 
 namespace Project.iOS
 {
@@ -15,7 +17,10 @@ namespace Project.iOS
             }
             catch (System.Exception ex)
             {
-
+                var properties = new Dictionary<string, string> {
+                    { "File", "main.cs" }
+                };
+                Crashes.TrackError(ex, properties);
                 throw ex;
             }
             

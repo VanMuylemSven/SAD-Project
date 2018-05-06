@@ -3,6 +3,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
 using UIKit;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace Project.iOS
 {
@@ -33,7 +36,9 @@ namespace Project.iOS
             {
                 throw ex;
             }
-            
+
+            // Appcenter Analytics  //
+            AppCenter.Start("aca4e2ab-4c0a-4b95-b1ce-eaef10cef4ca", typeof(Analytics), typeof(Crashes));
 
             window.MakeKeyAndVisible();
 

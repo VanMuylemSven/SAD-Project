@@ -1,4 +1,5 @@
 ﻿using MapKit;
+using Microsoft.AppCenter.Analytics;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -44,9 +45,6 @@ namespace Project.Core.ViewModels
 
             //Fill the table with data from the SearchHistory API
             FillHistory();
-
-            
-
         }
 
         //Messenger
@@ -61,16 +59,19 @@ namespace Project.Core.ViewModels
         private async void FillHistory()
         {
             HistoryItems = await _searchHistoryService.GetHistoryItems();
+            Analytics.TrackEvent("Search History - GETting history items from API");
             //StaticHistoryItems = HistoryItems;
         }
         /*private async void FillHistoryByName(string name)
         {
             HistoryItems = await _searchHistoryService.GetHistoryByName(name);
+            Analytics.TrackEvent("Search History - GETting Filtered history items from API");
         }*/
 
         private async void PostHistory(HistoryItem item)
         {
             await _searchHistoryService.AddHistoryItem(item);
+            Analytics.TrackEvent("Search History - POSTing item to API");
             //await _navigationService.Navigate... //Back to mainscreen
         }
 
@@ -116,6 +117,7 @@ namespace Project.Core.ViewModels
             HistoryItem historyItem = HistoryItems[index];
             _searchHistoryService.DeleteHistoryItem(historyItem.Id);
             FillHistory();
+            Analytics.TrackEvent("Search History - DELETEing item from API");
         }
     }
 }

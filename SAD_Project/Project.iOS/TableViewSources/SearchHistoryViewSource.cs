@@ -6,6 +6,7 @@ using System.Text;
 using CoreLocation;
 using Foundation;
 using MapKit;
+using Microsoft.AppCenter.Crashes;
 using MvvmCross.Binding.iOS.Views;
 using MvvmCross.Core.ViewModels;
 using Project.Core.Models;
@@ -33,7 +34,7 @@ namespace Project.iOS.TableViewSources
             }
             catch (Exception ex)
             {
-                Debug.Write(ex);
+                Crashes.TrackError(ex);
                 return null;
             }
         }
