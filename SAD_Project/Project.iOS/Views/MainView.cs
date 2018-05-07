@@ -41,7 +41,8 @@ namespace Project.iOS.Views
             if (selectedHistoryItem == null)
             {
                 //Bottom Tab bar 
-                UIBarButtonItem recentHistoryBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Bookmarks);
+                UIBarButtonItem recentHistoryBarButton = new UIBarButtonItem(UIBarButtonSystemItem.Rewind);
+                recentHistoryBarButton.Title = "Recent History";
                 UIBarButtonItem[] toolbarItems = new UIBarButtonItem[] {
                 recentHistoryBarButton//,
                 //...
@@ -57,10 +58,7 @@ namespace Project.iOS.Views
 
                 set.Apply();
             }
-            else
-            {
-                this.NavigationController.ToolbarHidden = true;
-            }
+
 
             ////////////
             // MapKit //

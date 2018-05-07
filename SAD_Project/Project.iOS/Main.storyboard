@@ -179,7 +179,6 @@
                             </connections>
                         </containerView>
                     </tableView>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6141" userLabel="First Responder" sceneMemberID="firstResponder"/>
