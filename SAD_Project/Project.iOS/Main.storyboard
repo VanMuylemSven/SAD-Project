@@ -123,19 +123,11 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6387" translatesAutoresizingMaskIntoConstraints="NO" text="tuesday, ..." fixedFrame="YES">
-                                            <rect key="frame" x="111" y="50" width="257" height="21"/>
+                                            <rect key="frame" x="20" y="44" width="348" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                                             <color key="tintColor" colorSpace="calibratedRGB" red="0.0196078431372549" green="0.19607843137254902" blue="0.50980392156862742" alpha="1"/>
                                             <color key="textColor" colorSpace="calibratedRGB" red="0.0196078431372549" green="0.31372549019607843" blue="0.70588235294117652" alpha="1"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Viewed at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="10363" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                            <rect key="frame" x="20" y="50" width="83" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
-                                            <color key="textColor" colorSpace="calibratedRGB" red="0.0196078431372549" green="0.31372549019607843" blue="0.70588235294117652" alpha="1"/>
-                                            <color key="tintColor" colorSpace="calibratedRGB" red="0.0196078431372549" green="0.19607843137254902" blue="0.50980392156862742" alpha="1"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="12228" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
@@ -247,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18256" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="-90"/>
+            <point key="canvasLocation" x="-88" y="-228"/>
         </scene>
     </scenes>
     <color key="tintColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>

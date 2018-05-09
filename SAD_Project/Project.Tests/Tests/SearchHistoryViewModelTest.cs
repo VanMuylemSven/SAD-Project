@@ -108,7 +108,7 @@ namespace Project.Tests.Tests
                 Longitude = "42.2"
             };
             var vm = new SearchHistoryViewModel(null, mockNavService.Object, null);
-            vm.HistoryNavCommand.Execute(historyItem);
+            vm.HistoryNavCommand.Execute();
             //ACT 
 
             //ASSERT
